@@ -5,12 +5,13 @@
         <div class="col-sm-12">
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Create new instansi</h6>
-                <form action="{{ url('dashboard/instansi') }}" method="POST">
+                <form action="{{ url('dashboard/instansi/' . $instansi->id) }}" method="POST">
                     @csrf
+                    @method('put')
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama instansi</label>
                         <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
-                            id="nama" value="{{ @old('nama') }}" autocomplete="off" autofocus>
+                            id="nama" value="{{ @old('nama', $instansi->nama) }}" autocomplete="off">
                         @error('nama')
                             <div class="invalid-feedback text-red">{{ $message }}</div>
                         @enderror
@@ -18,7 +19,7 @@
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
                         <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat"
-                            id="alamat" value="{{ @old('alamat') }}" autocomplete="off">
+                            id="alamat" value="{{ @old('alamat', $instansi->alamat) }}" autocomplete="off">
 
                         @error('alamat')
                             <div class="invalid-feedback text-red">{{ $message }}</div>

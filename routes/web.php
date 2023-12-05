@@ -25,6 +25,7 @@ Route::get('/', [DashboardKasubagController::class, 'index']);
 Route::get('/instansi', [DashboardKasubagController::class, 'instansi']);
 
 Route::resource('dashboard/instansi', InstansiController::class);
+Route::get('dashboard/instansis/delete/{instansi}', [InstansiController::class, 'delete']);
 
 
 // Testint Route : 

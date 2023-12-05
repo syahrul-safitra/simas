@@ -71,7 +71,7 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    <img class="rounded-circle" src="{{ asset('img/user.jpg') }}" alt=""
                                         style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
@@ -162,11 +162,22 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Template Javascript -->
     <script src={{ asset('js/main.js') }}></script>
+
+    {{-- Sweet Alert --}}
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+
+    {{-- My Js Script : --}}
+
+    {{-- My JS Script --}}
+    <script src="{{ asset('js/myScript.js') }}"></script>
 </body>
+
+
 
 </html>
