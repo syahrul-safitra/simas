@@ -1,14 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Models\SuratMasuk;
-use Illuminate\Console\View\Components\Alert;
 use Illuminate\Session\ArraySessionHandler;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DashboardKasubagController;
 use App\Http\Controllers\InstansiController;
-use App\Models\Instansi;
+use App\Http\Controllers\SuratMasukController;
+use App\Http\Controllers\DiteruskanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +22,18 @@ use App\Models\Instansi;
 Route::get('/', [DashboardKasubagController::class, 'index']);
 Route::get('/instansi', [DashboardKasubagController::class, 'instansi']);
 
+// Resource instansi Controller : 
 Route::resource('dashboard/instansi', InstansiController::class);
 Route::get('dashboard/instansis/delete/{instansi}', [InstansiController::class, 'delete']);
 
+// Resource SuratMasuk Controller :
+Route::resource('dashboard/suratmasuk', SuratMasukController::class);
+Route::get('dashboard/suratmasuks/delete/{suratMasuk}', [SuratMasukController::class, 'delete']);
+
+// Resource Diteruskan Controller :
+Route::resource('dashboard/diteruskan', DiteruskanController::class);
+Route::get('dashboard/diteruskan/create/{id}', [DiteruskanController::class, 'create']);
+// Route::get('dashboard/diteruskann/{id}', [DiteruskanController::class, 'show']);
 
 // Testint Route : 
 Route::get('/test', function () {
@@ -44,3 +51,6 @@ Route::get('/test/4', [TestController::class, 'test4']);
 Route::get('/test/5', [TestController::class, 'test5']);
 Route::get('/test/6', [TestController::class, 'test6']);
 Route::get('/test/7', [TestController::class, 'test7']);
+Route::get('/test/8', [TestController::class, 'test8']);
+Route::get('/test/9', [TestController::class, 'test9']);
+Route::get('/test/10', [TestController::class, 'test10']);

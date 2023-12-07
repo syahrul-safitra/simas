@@ -18,7 +18,6 @@
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -41,7 +40,7 @@
 
 
         <!-- Sidebar Start -->
-        @include('partials.sidebar');
+        @include('partials.sidebar')
         <!-- Sidebar End -->
 
 
@@ -82,7 +81,7 @@
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.jpg" alt=""
+                                    <img class="rounded-circle" src="{{ asset('img/user.jpg') }}" alt=""
                                         style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>

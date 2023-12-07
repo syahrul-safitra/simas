@@ -39,7 +39,7 @@ class InstansiController extends Controller
         Instansi::create($validated);
 
         // redirect : with() => session yg digunakan untuk menyimpan pesan berhasil yg kemudian dipanggil di dalam dashboard/instansi : 
-        return redirect('dashboard/instansi')->with('success', 'New instansi has been addedd!');
+        return redirect('dashboard/instansi')->with('success', 'New instansi has been added!');
     }
 
     /**
@@ -47,6 +47,8 @@ class InstansiController extends Controller
      */
     public function edit(Instansi $instansi)
     {
+
+        // dd($instansi);
         return view('dashboardInstansi.edit', [
             'instansi' => $instansi,
         ]);
@@ -82,9 +84,7 @@ class InstansiController extends Controller
      */
     public function delete(Instansi $instansi)
     {
-
         Instansi::destroy($instansi->id);
-
         // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
         return redirect('dashboard/instansi')->with('success', 'Instansi has been deleted!');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SuratMasuk;
 use App\Models\Diteruskan;
+use App\Models\KepadaUser;
 
 class TestController extends Controller
 {
@@ -96,5 +97,25 @@ class TestController extends Controller
     public function test7()
     {
         return view('welcome2');
+    }
+
+    public function test8()
+    {
+        $get = Diteruskan::where('surat_masuk_id', 1)->first();
+
+        echo $get['id'];
+    }
+
+    public function test9()
+    {
+        $x = KepadaUser::find(6);
+        dd($x->user);
+    }
+
+    public function test10()
+    {
+        SuratMasuk::where('instansi_id', 4)->delete();
+
+        return 'di delete';
     }
 }

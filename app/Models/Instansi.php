@@ -10,4 +10,10 @@ class Instansi extends Model
     use HasFactory;
 
     protected $fillable = ['nama', 'alamat'];
+
+    // Relation to SuratMasuk one to one;
+    public function suratMasuk()
+    {
+        return $this->hasMany(SuratMasuk::class);
+    }
 }

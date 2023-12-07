@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="col-12">
-        <h4>Instansi Terkait</h4>
+        <h4><i class="bi bi-building"></i> Instansi Terkait</h4>
         {{-- pesan success input data :  --}}
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -12,7 +12,7 @@
         @endif
         <div class="bg-light rounded h-100 p-4">
             <div class="table-responsive">
-                <table class="table table-responsive table-hover" style="color:black">
+                <table class="table table-hover" style="color:black">
                     <a href="{{ url('dashboard/instansi/create') }} " class="btn btn-primary mb-3"><i
                             class="bi bi-plus-circle me-2"></i></i>Add
                         Instansi</a>

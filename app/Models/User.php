@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'status',
         'email',
         'password',
     ];
@@ -42,4 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // relation to kepada_user : one to many : 
+    public function kepadaUser()
+    {
+        return $this->hasMany(KepadaUser::class);
+    }
 }

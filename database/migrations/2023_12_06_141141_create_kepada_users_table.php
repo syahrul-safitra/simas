@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('diteruskans', function (Blueprint $table) {
+        Schema::create('kepada_users', function (Blueprint $table) {
             $table->id();
-            $table->string('catatan');
             $table->timestamps();
 
-            // foreign key : 
-            $table->foreignId('surat_masuk_id')->unique()->constrained()
+            // foreign key from table diteruskans: 
+            $table->foreignId('diteruskan_id')->constrained()
                 ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->casCadeOnUpdate();
+
+            // foreign key form table users: 
+            $table->foreignId('user_id')->constrained()
+                ->cascadeOnDelete()
+                ->casCadeOnUpdate();
         });
     }
 
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('diteruskans');
+        Schema::dropIfExists('kepada_users');
     }
 };

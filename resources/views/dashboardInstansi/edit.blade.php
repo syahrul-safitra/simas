@@ -25,6 +25,8 @@
                             <div class="invalid-feedback text-red">{{ $message }}</div>
                         @enderror
                     </div>
+                    <a href="{{ url('dashboard/instansi') }}" class="btn btn-warning me-2">Batal</a>
+
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             </div>

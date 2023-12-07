@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Diteruskan extends Model
 {
     use HasFactory;
+    protected $fillable = ['surat_masuk_id', 'catatan'];
 
-    protected $fillable = ['surat_masuk_id', 'users'];
+    // relation to kepada_user : one to many
+    public function kepadaUser()
+    {
+        return $this->hasMany(KepadaUser::class);
+    }
 }
