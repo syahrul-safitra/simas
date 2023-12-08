@@ -1,7 +1,7 @@
 
 // javascript code:
 $(document).ready(function () {
-   console.log('ini berhasil?');
+   console.log('ini berhasil?' + ' iya donk');
 
    // get btn-delete-instansi : 
    $('.btn-delete-suratmasuk').on('click', function (e) {
@@ -40,6 +40,29 @@ $(document).ready(function () {
          icon: 'warning',
          buttons: true,
          dangerMode: true,
+      })
+         // jika btn ok di klik : 
+         .then((willdelete) => {
+            if (willdelete) {
+               document.location.href = data;
+            }
+         })
+   })
+
+   $('#btn-delete-diteruskan').on('click', function (e) {
+      e.preventDefault();
+
+      // get data href : 
+      const data = $(this).data('id');
+
+      console.log(data);
+
+      swal({
+         title: 'Apakah anda yakin?',
+         text: 'Data diteruskan akan dihapus',
+         icon: 'warning',
+         buttons: true,
+         dangerMode: true
       })
          // jika btn ok di klik : 
          .then((willdelete) => {

@@ -13,19 +13,12 @@
             </div>
             <div class="ms-3">
                 <h6 class="mb-0">{{ Auth::user()->name }}</h6>
-                <span>Master</span>
+                <span>Pengguna</span>
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ url('/') }}" class="nav-item nav-link"><i
-                    class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <a href="{{ url('dashboard/suratmasuk') }}"
-                class="nav-item nav-link {{ (Request::is('dashboard/suratmasuk*') ? 'active' : '' || Request::is('dashboard/diteruskan*')) ? 'active' : '' }}"><i
-                    class="fa fa-envelope me-2"></i>Surat Masuk</a>
-            <a href="form.html" class="nav-item nav-link {{ Request::is('dashboard/suratkeluar*') ? 'active' : '' }}"><i
-                    class="fa fa-reply me-2"></i>Surat Keluar</a>
-            <a href="{{ url('/dashboard/instansi') }}"
-                class="nav-item nav-link {{ Request::is('dashboard/instansi*') ? 'active' : '' }}"><i
-                    class="fa fa-building me-2"></i>Instansi</a>
+                class="nav-item nav-link {{ (Request::is('dashboard/pengguna*') ? 'active' : '' || Request::is('dashboard/diteruskan*')) ? 'active' : '' }}"><i
+                    class="bi bi-file-earmark-text-fill me-2"></i>Surat</a>
     </nav>
 </div>

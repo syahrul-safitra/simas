@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Session\ArraySessionHandler;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DashboardKasubagController;
 use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\DiteruskanController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\DisposisiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +35,27 @@ Route::get('dashboard/suratmasuks/delete/{suratMasuk}', [SuratMasukController::c
 // Resource Diteruskan Controller :
 Route::resource('dashboard/diteruskan', DiteruskanController::class);
 Route::get('dashboard/diteruskan/create/{id}', [DiteruskanController::class, 'create']);
-// Route::get('dashboard/diteruskann/{id}', [DiteruskanController::class, 'show']);
+Route::get('dashboard/diteruskans/delete/{diteruskan}', [DiteruskanController::class, 'delete']);
 
-// Testint Route : 
+Route::resource('dashboard/disposisi', DisposisiController::class);
+
+// Route Pengguna : 
+Route::get('dashboard/pengguna', [PenggunaController::class, 'index']);
+
+
+// Controller login : 
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('logout', [LoginController::class, 'logout']);
+Route::post('login', [LoginController::class, 'authenticate']);
+
+
+
+
+
+
+
+
+// Testing Route : 
 Route::get('/test', function () {
     // $data = SuratMasuk::find(3);
     // $data = $data->tanggal_diterima;

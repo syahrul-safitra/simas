@@ -19,8 +19,11 @@
                     @else
                         <a href="{{ url('dashboard/diteruskan/' . $diteruskan->id) . '/edit' }} "
                             class="btn btn-warning mb-3"><i class="bi bi-pencil-square me-2"></i></i>Edit</a>
-                        <a href="{{ url('dashboard/diteruskan/create/' . $suratMasuk->id) }} "
-                            class="btn btn-danger mb-3"><i class="bi bi-trash3 me-2"></i></i>Hapus</a>
+
+                        <div class="btn btn btn-danger mb-3 " id="btn-delete-diteruskan"
+                            data-id="{{ url('dashboard/diteruskans/delete/' . $diteruskan->id) }}">
+                            <i class="bi bi-trash me-2"></i>Hapus
+                        </div>
                     @endif
                 </div>
                 <tbody>

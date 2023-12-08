@@ -54,7 +54,11 @@
                                                 class="bi bi-arrow-up-square"></i></a>
                                     </div>
                                 </td>
-                                <td>Kosong</td>
+                                <td>
+                                    <a href="{{ url('dashboard/disposisi') }}" class="btn btn-success"
+                                        style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px"><i
+                                            class="bi bi-file-earmark-arrow-up"></i></a>
+                                </td>
                                 <td>
                                     <div class="d-flex gap-4">
                                         <a href="{{ url('dashboard/suratmasuk/' . $suratMasuk->id . '/edit') }}"

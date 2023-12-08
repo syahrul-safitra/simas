@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Disposisi extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nomor', 'isi', 'diketahui', 'surat_masuk_id'];
 }

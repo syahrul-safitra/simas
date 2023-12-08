@@ -15,4 +15,10 @@ class Diteruskan extends Model
     {
         return $this->hasMany(KepadaUser::class);
     }
+
+    // relation belong to surat masuk : 
+    public function suratMasuk()
+    {
+        return $this->belongsTo(SuratMasuk::class);
+    }
 }

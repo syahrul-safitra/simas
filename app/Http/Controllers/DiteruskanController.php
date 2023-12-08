@@ -147,6 +147,15 @@ class DiteruskanController extends Controller
      */
     public function destroy(Diteruskan $diteruskan)
     {
-        //
+        // 
+    }
+
+    public function delete(Diteruskan $diteruskan)
+    {
+        $suratMasukId = $diteruskan->surat_masuk_id;
+
+        Diteruskan::destroy($diteruskan->id);
+
+        return redirect('dashboard/diteruskan/' . $suratMasukId)->with('success', 'Diteruskan has been deleted!');
     }
 }
