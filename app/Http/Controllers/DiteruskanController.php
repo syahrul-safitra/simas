@@ -79,10 +79,6 @@ class DiteruskanController extends Controller
 
         $dataDiteruskan = null;
 
-        $x = Diteruskan::where('surat_masuk_id', $id)->first();
-
-        // return $x ? 'ada' : 'tidak ;
-
         // cek apakah data ada atau tidak : 
         if (Diteruskan::where('surat_masuk_id', $id)->first()) {
             $dataDiteruskan = Diteruskan::where('surat_masuk_id', $id)->first()->load('kepadaUser.user');

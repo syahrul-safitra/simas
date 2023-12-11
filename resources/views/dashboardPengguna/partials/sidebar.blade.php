@@ -17,8 +17,7 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ url('dashboard/suratmasuk') }}"
-                class="nav-item nav-link {{ (Request::is('dashboard/pengguna*') ? 'active' : '' || Request::is('dashboard/diteruskan*')) ? 'active' : '' }}"><i
+            <a href="{{ url('dashboard/pengguna') }}" class="nav-item nav-link active"><i
                     class="bi bi-file-earmark-text-fill me-2"></i>Surat</a>
     </nav>
 </div>

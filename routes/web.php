@@ -21,30 +21,33 @@ use App\Http\Controllers\DisposisiController;
 |
 */
 
-Route::get('/', [DashboardKasubagController::class, 'index']);
-Route::get('/instansi', [DashboardKasubagController::class, 'instansi']);
+Route::get('/', [DashboardKasubagController::class, 'index'])->middleware('auth', 'master');
+Route::get('/instansi', [DashboardKasubagController::class, 'instansi'])->middleware('auth');
 
 // Resource instansi Controller : 
-Route::resource('dashboard/instansi', InstansiController::class);
-Route::get('dashboard/instansis/delete/{instansi}', [InstansiController::class, 'delete']);
+Route::resource('dashboard/instansi', InstansiController::class)->middleware('auth');
+Route::get('dashboard/instansis/delete/{instansi}', [InstansiController::class, 'delete'])->middleware('auth');
 
 // Resource SuratMasuk Controller :
-Route::resource('dashboard/suratmasuk', SuratMasukController::class);
-Route::get('dashboard/suratmasuks/delete/{suratMasuk}', [SuratMasukController::class, 'delete']);
+Route::resource('dashboard/suratmasuk', SuratMasukController::class)->middleware('auth');
+Route::get('dashboard/suratmasuks/delete/{suratMasuk}', [SuratMasukController::class, 'delete'])->middleware('auth');
 
 // Resource Diteruskan Controller :
-Route::resource('dashboard/diteruskan', DiteruskanController::class);
-Route::get('dashboard/diteruskan/create/{id}', [DiteruskanController::class, 'create']);
-Route::get('dashboard/diteruskans/delete/{diteruskan}', [DiteruskanController::class, 'delete']);
+Route::resource('dashboard/diteruskan', DiteruskanController::class)->middleware('auth')->except('destroy');
+Route::get('dashboard/diteruskan/create/{id}', [DiteruskanController::class, 'create'])->middleware('auth');
+Route::get('dashboard/diteruskans/delete/{diteruskan}', [DiteruskanController::class, 'delete'])->middleware('auth');
 
-Route::resource('dashboard/disposisi', DisposisiController::class);
+Route::resource('dashboard/disposisi', DisposisiController::class)->middleware('auth');
+Route::get('dashboard/disposisis/create/{suratMasuk}', [DisposisiController::class, 'create']);
+Route::get('dashboard/disposisis/delete/{disposisi}', [DisposisiController::class, 'delete']);
+
 
 // Route Pengguna : 
-Route::get('dashboard/pengguna', [PenggunaController::class, 'index']);
+Route::get('dashboard/pengguna', [PenggunaController::class, 'index'])->middleware('auth');
 
 
 // Controller login : 
-Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('logout', [LoginController::class, 'logout']);
 Route::post('login', [LoginController::class, 'authenticate']);
 
@@ -74,3 +77,4 @@ Route::get('/test/7', [TestController::class, 'test7']);
 Route::get('/test/8', [TestController::class, 'test8']);
 Route::get('/test/9', [TestController::class, 'test9']);
 Route::get('/test/10', [TestController::class, 'test10']);
+Route::get('/test/11', [TestController::class, 'test11']);

@@ -1,4 +1,4 @@
-@extends('dashboardPengguna.layouts.main')
+@extends('layouts.main')
 
 @section('container')
     <div class="col-12">
@@ -14,7 +14,7 @@
             <table class="table table-striped table-hover">
                 <div class="d-flex gap-2">
                     @if (!$disposisi)
-                        <a href="{{ url('dashboard/disposisi/create/' . $suratMasuk->id) }} "
+                        <a href="{{ url('dashboard/disposisis/create/' . $suratMasuk->id) }} "
                             class="btn btn-primary mb-3"><i class="bi bi-plus-circle me-2"></i></i>Tambah</a>
                     @else
                         <a href="{{ url('dashboard/disposisi/' . $disposisi->id) . '/edit' }} "
@@ -45,17 +45,25 @@
                     <tr>
                         <th scope="row" style="width: 30%">Nomor Disposisi</th>
                         <td style="width: 5%">:</td>
-                        <td style="width: 65%">Kosong</td>
+                        <td style="width: 65%">{{ $disposisi ? $disposisi->nomor : '' }}</td>
                     </tr>
                     <tr>
                         <th scope="row" style="width: 30%">Isi</th>
                         <td style="width: 5%">:</td>
-                        <td style="width: 65%">Kosong</td>
+                        <td style="width: 65%">{!! $disposisi ? $disposisi->isi : '' !!}</td>
                     </tr>
                     <tr>
                         <th scope="row" style="width: 30%">Diketahui</th>
                         <td style="width: 5%">:</td>
-                        <td style="width: 65%">Kosong</td>
+                        <td style="width: 65%">
+                            @if ($disposisi)
+                                @foreach ($users as $user)
+                                    @if (in_array($user->id, json_decode($disposisi->diketahui)))
+                                        <p>{{ $user->name }}</p>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </td>
                     </tr>
                 </tbody>
             </table>

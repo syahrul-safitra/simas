@@ -25,7 +25,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             // cek apakah kasubag atau staff yang login : 
-            if ($request->email === 'kasubag@gmail.com' || $request->email === 'staff@gmail.com') {
+            if (Auth::user()->level === 'master') {
                 // redirect ke halaman dashboard index : 
                 return redirect()->intended('/');
             }

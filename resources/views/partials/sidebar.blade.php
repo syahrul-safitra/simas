@@ -20,7 +20,7 @@
             <a href="{{ url('/') }}" class="nav-item nav-link"><i
                     class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <a href="{{ url('dashboard/suratmasuk') }}"
-                class="nav-item nav-link {{ (Request::is('dashboard/suratmasuk*') ? 'active' : '' || Request::is('dashboard/diteruskan*')) ? 'active' : '' }}"><i
+                class="nav-item nav-link {{ (Request::is('dashboard/suratmasuk*') ? 'active' : '' || Request::is('dashboard/diteruskan*') || Request::is('dashboard/disposisi*')) ? 'active' : '' }}"><i
                     class="fa fa-envelope me-2"></i>Surat Masuk</a>
             <a href="form.html" class="nav-item nav-link {{ Request::is('dashboard/suratkeluar*') ? 'active' : '' }}"><i
                     class="fa fa-reply me-2"></i>Surat Keluar</a>

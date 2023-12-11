@@ -55,7 +55,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{{ url('dashboard/disposisi') }}" class="btn btn-success"
+                                    <a href="{{ url('dashboard/disposisi/' . $suratMasuk->id) }}" class="btn btn-success"
                                         style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px"><i
                                             class="bi bi-file-earmark-arrow-up"></i></a>
                                 </td>

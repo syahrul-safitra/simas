@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\SuratMasuk;
 use App\Models\Diteruskan;
 use App\Models\KepadaUser;
+use Illuminate\Support\Facades\Auth;
+
 
 class TestController extends Controller
 {
@@ -117,5 +119,10 @@ class TestController extends Controller
         SuratMasuk::where('instansi_id', 4)->delete();
 
         return 'di delete';
+    }
+
+    public function test11()
+    {
+        return Auth::user();
     }
 }

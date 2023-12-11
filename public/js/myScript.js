@@ -55,11 +55,30 @@ $(document).ready(function () {
       // get data href : 
       const data = $(this).data('id');
 
-      console.log(data);
-
       swal({
          title: 'Apakah anda yakin?',
          text: 'Data diteruskan akan dihapus',
+         icon: 'warning',
+         buttons: true,
+         dangerMode: true
+      })
+         // jika btn ok di klik : 
+         .then((willdelete) => {
+            if (willdelete) {
+               document.location.href = data;
+            }
+         })
+   })
+
+   $('#btn-delete-disposisi').on('click', function (e) {
+      e.preventDefault();
+
+      const data = $(this).data('id');
+
+      console.log(data);
+      swal({
+         title: 'Apakah anda yakin?',
+         text: 'Data disposisi akan dihapus',
          icon: 'warning',
          buttons: true,
          dangerMode: true
