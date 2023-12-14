@@ -9,5 +9,9 @@ class Disposisi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nomor', 'isi', 'diketahui', 'surat_masuk_id'];
+    protected $fillable = ['indek_berkas', 'kode_klasifikasi_arsip', 'tanggal_penyelesaian', 'isi', 'diketahui', 'kepada', 'tanggal', 'pukul', 'surat_masuk_id'];
+
+    protected $casts = [
+        'pukul' => 'datetime'
+    ];
 }

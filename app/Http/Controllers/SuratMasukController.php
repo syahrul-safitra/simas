@@ -26,9 +26,11 @@ class SuratMasukController extends Controller
     {
 
         $dataStatus = ['diketahui', 'dihadiri', 'ditindak lanjuti'];
+        $dataSifat = ['biasa', 'rahasia', 'sangat rahasia'];
         return view('dashboardSuratMasuk.create', [
             'instansis' => Instansi::all(),
             'statuss' => $dataStatus,
+            'sifats' => $dataSifat
         ]);
     }
 
@@ -42,6 +44,8 @@ class SuratMasukController extends Controller
             'no_surat' => 'required|unique:surat_masuks|max:255',
             'tanggal_surat' => 'required',
             'tanggal_diterima' => 'required',
+            'sifat' => 'required',
+            'isi_ringkas' => 'required',
             'status' => 'required',
             'instansi_id' => 'required',
             'file' => 'file|max:3072'
@@ -81,11 +85,13 @@ class SuratMasukController extends Controller
     public function edit(SuratMasuk $suratmasuk)
     {
         $dataStatus = ['diketahui', 'dihadiri', 'ditindak lanjuti'];
+        $dataSifat = ['biasa', 'rahasia', 'sangat rahasia'];
 
         return view('dashboardSuratMasuk.edit', [
             'suratMasuk' => $suratmasuk,
             'instansis' => Instansi::all(),
             'statuss' => $dataStatus,
+            'sifats' => $dataSifat
         ]);
     }
 
@@ -101,6 +107,8 @@ class SuratMasukController extends Controller
             'tanggal_diterima' => 'required',
             'status' => 'required',
             'instansi_id' => 'required',
+            'sifat' => 'required',
+            'isi_ringkas' => 'required',
             'file' => 'file|max:3072'
         ];
 

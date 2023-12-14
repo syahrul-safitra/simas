@@ -1,15 +1,6 @@
-@extends('layouts.main')
+@extends('dashboardPengguna.layouts.main')
 
 @section('container')
-    {{-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif --}}
     <form action="{{ url('dashboard/disposisi/' . $disposisi->id) }}" method="POST">
         @csrf
         @method('PUT')

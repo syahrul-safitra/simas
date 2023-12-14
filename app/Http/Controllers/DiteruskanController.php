@@ -30,7 +30,7 @@ class DiteruskanController extends Controller
     {
         return view('dashboardDiteruskan.create', [
             'id' => $id,
-            'users' => User::all()
+            'users' => User::where('level', 'pengguna')->get()
         ]);
     }
 
@@ -95,6 +95,9 @@ class DiteruskanController extends Controller
      */
     public function edit(Diteruskan $diteruskan)
     {
+
+        // lazy eager load :
+        $diteruskan->kepadaUser = $diteruskan->kepadaUser->load('user');
 
         foreach ($diteruskan->kepadaUser as $userr) {
             $users_cheked[] = $userr->user->id;

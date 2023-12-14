@@ -19,6 +19,7 @@
                             <th scope="col">Asal Surat</th>
                             <th scope="col">Status</th>
                             <th scope="col">File</th>
+                            <th scope="col">Disposisi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,9 @@
                                 <td>{{ $kepadaUser->diteruskan->suratMasuk->instansi->nama }}</td>
                                 <td>{{ $kepadaUser->diteruskan->suratMasuk->status }}</td>
                                 <td><a href="{{ url('file/' . $kepadaUser->diteruskan->suratMasuk->file) }}">y</a></td>
+                                <td><a
+                                        href="{{ url('dashboard/disposisi/' . $kepadaUser->diteruskan->suratMasuk->id) }}">D</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

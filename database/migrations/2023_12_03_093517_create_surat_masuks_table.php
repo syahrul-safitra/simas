@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('no_surat')->unique();
             $table->date('tanggal_surat');
             $table->dateTime('tanggal_diterima');
-            $table->string('file');
+            $table->enum('sifat', ['biasa', 'rahasia', 'sangat rahasia']);
+            $table->string('isi_ringkas');
             $table->enum('status', ['diketahui', 'dihadiri', 'ditindak lanjuti']);
+            $table->string('file');
+            $table->enum('keadaan', ['proses', 'selesai'])->default('proses');
             $table->timestamps();
 
             $table->foreignId('instansi_id')->constrained()

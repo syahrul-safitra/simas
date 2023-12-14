@@ -22,7 +22,8 @@
             <a href="{{ url('dashboard/suratmasuk') }}"
                 class="nav-item nav-link {{ (Request::is('dashboard/suratmasuk*') ? 'active' : '' || Request::is('dashboard/diteruskan*') || Request::is('dashboard/disposisi*')) ? 'active' : '' }}"><i
                     class="fa fa-envelope me-2"></i>Surat Masuk</a>
-            <a href="form.html" class="nav-item nav-link {{ Request::is('dashboard/suratkeluar*') ? 'active' : '' }}"><i
+            <a href="{{ url('dashboard/suratkeluar') }}"
+                class="nav-item nav-link {{ Request::is('dashboard/suratkeluar*') ? 'active' : '' }}"><i
                     class="fa fa-reply me-2"></i>Surat Keluar</a>
             <a href="{{ url('/dashboard/instansi') }}"
                 class="nav-item nav-link {{ Request::is('dashboard/instansi*') ? 'active' : '' }}"><i

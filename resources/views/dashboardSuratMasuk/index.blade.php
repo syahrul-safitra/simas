@@ -22,6 +22,8 @@
                             <th scope="col">Asal Surat</th>
                             <th scope="col">Tanggal Surat</th>
                             <th scope="col">Tanggal Diterima</th>
+                            <th scope="col">Sifat</th>
+                            <th scope="col">Isi Ringkas</th>
                             <th scope="col">Status</th>
                             <th scope="col">Berkas</th>
                             <th scope="col">Diteruskan</th>
@@ -38,6 +40,8 @@
                                 <td>{{ $suratMasuk->instansi->nama }}</td>
                                 <td>{{ $suratMasuk->tanggal_surat }}</td>
                                 <td>{{ $suratMasuk->tanggal_diterima }}</td>
+                                <td>{{ $suratMasuk->sifat }}</td>
+                                <td>{{ $suratMasuk->isi_ringkas }}</td>
                                 <td>{{ $suratMasuk->status }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">

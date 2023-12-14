@@ -9,7 +9,7 @@ class SuratMasuk extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['no_surat', 'tanggal_surat', 'tanggal_diterima', 'file', 'status', 'instansi_id'];
+    protected $fillable = ['no_surat', 'tanggal_surat', 'tanggal_diterima', 'sifat', 'isi_ringkas', 'file', 'status', 'keadaan', 'instansi_id'];
 
     // relation to instanasi belong to : 
     public function instansi()
@@ -21,5 +21,10 @@ class SuratMasuk extends Model
     public function ditersukan()
     {
         return $this->hasOne(Diteruskan::class);
+    }
+
+    public function suratKeluar()
+    {
+        return $this->hasOne(SuratKeluar::class);
     }
 }

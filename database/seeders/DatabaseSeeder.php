@@ -28,6 +28,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::create([
+            'name' => 'Staff',
+            'status' => 'staff',
+            'level' => 'master',
+            'email' => 'staff@gmail.com',
+            'password' => 'staff12'
+        ]);
+
+        \App\Models\User::create([
             'name' => 'Dekan',
             'status' => 'dekan',
             'level' => 'pengguna',
@@ -36,18 +44,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::create([
-            'name' => 'Wakil Dekan 1',
+            'name' => 'Wakil Dekan Bidang Akademik dan Kemahasiswaan',
             'status' => 'wd-1',
             'level' => 'pengguna',
-            'email' => 'wakildekan1@gmail.com',
-            'password' => 'wakildekan112'
+            'email' => 'wdbak@gmail.com',
+            'password' => 'wdbak12'
         ]);
         \App\Models\User::create([
-            'name' => 'Wakil Dekan 2',
+            'name' => 'Wakil Dekan Bidang Keuangan dan Umum',
             'status' => 'wd-2',
             'level' => 'pengguna',
             'email' => 'wakildekan2@gmail.com',
-            'password' => 'wakildekan212'
+            'password' => 'wdbku12'
         ]);
         \App\Models\User::create([
             'name' => 'Prodi Sistem Informasi',
@@ -76,6 +84,27 @@ class DatabaseSeeder extends Seeder
             'level' => 'pengguna',
             'email' => 'prodikimia@gmail.com',
             'password' => 'prodikimia12'
+        ]);
+        \App\Models\User::create([
+            'name' => 'Prodi Arsitekur',
+            'status' => 'prodi-arsitektur',
+            'level' => 'pengguna',
+            'email' => 'prodiarsitektur@gmail.com',
+            'password' => 'prodiarsitektur12'
+        ]);
+        \App\Models\User::create([
+            'name' => 'Prodi Statistika',
+            'status' => 'prodi-statistika',
+            'level' => 'pengguna',
+            'email' => 'prodistatistika@gmail.com',
+            'password' => 'prodistatistika12'
+        ]);
+        \App\Models\User::create([
+            'name' => 'Laboratorium',
+            'status' => 'laboratorium',
+            'level' => 'pengguna',
+            'email' => 'laboratorium@gmail.com',
+            'password' => 'laboratorium12'
         ]);
     }
 }

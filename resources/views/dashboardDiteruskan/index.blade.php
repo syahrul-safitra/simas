@@ -13,6 +13,8 @@
         <div class="bg-light rounded h-100 p-4">
             <table class="table table-striped table-hover">
                 <div class="d-flex gap-2">
+                    <a href="{{ url('dashboard/suratmasuk') }}" class="btn btn-info  mb-3"><i
+                            class="bi bi-arrow-left-circle me-2"></i>Kembali</a>
                     @if (!$diteruskan)
                         <a href="{{ url('dashboard/diteruskan/create/' . $suratMasuk->id) }} "
                             class="btn btn-primary mb-3"><i class="bi bi-plus-circle me-2"></i></i>Tambah</a>

@@ -26,7 +26,7 @@ $(document).ready(function () {
 
    });
 
-   $('.btn-delete-instansi2').on('click', function (e) {
+   $('.btn-delete-instansi').on('click', function (e) {
 
       console.log('testingg');
       e.preventDefault();
@@ -36,7 +36,7 @@ $(document).ready(function () {
 
       swal({
          title: 'Apakah anda yakin?',
-         text: 'Data surat masuk akan dihapus',
+         text: 'Data instansi akan dihapus',
          icon: 'warning',
          buttons: true,
          dangerMode: true,
@@ -89,5 +89,42 @@ $(document).ready(function () {
                document.location.href = data;
             }
          })
+   })
+
+   $('#tindak-lanjut').on('change', function () {
+      const tujuan = $('#tujuan');
+
+      var data = $(this).val();
+      if (data != '') {
+         tujuan.val(data);
+         tujuan.prop('readonly', true);
+      } else {
+         tujuan.val('');
+         tujuan.prop('readonly', false);
+      }
+   })
+
+   $('.btn-delete-suratkeluar').on('click', function (e) {
+
+      e.preventDefault();
+      const data = $(this).data('id');
+
+      console.log(data);
+
+      swal({
+         title: "Apakah anda yakin?",
+         text: "Data surat keluar akan dihapus",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+      })
+         // jika tombol yes maka pergi ke location href :
+         .then((willdelete) => {
+            if (willdelete) {
+               document.location.href = data;
+            }
+         })
+
+
    })
 });

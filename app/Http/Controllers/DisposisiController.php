@@ -34,10 +34,14 @@ class DisposisiController extends Controller
      */
     public function store(Request $request)
     {
-
         // validation data : 
         $validated = $request->validate([
-            'nomor' => 'required|unique:disposisis',
+            'indek_berkas' => 'required|unique:disposisis',
+            'kode_klasifikasi_arsip' => 'required',
+            'tanggal_penyelesaian' => '',
+            'tanggal' => '',
+            'kepada' => '',
+            'pukul' => '',
             'isi' => 'required',
             'diketahui' => 'required',
             'surat_masuk_id' => 'required'
@@ -50,7 +54,7 @@ class DisposisiController extends Controller
         Disposisi::create($validated);
 
         // redirect ke
-        return redirect('dashboard/disposisi/' . $validated['surat_masuk_id'])->with('success', 'Data disposisi berhasil di edit!');
+        return redirect('dashboard/disposisi/' . $validated['surat_masuk_id'])->with('success', 'Data disposisi berhasil di buat!');
     }
 
     /**
@@ -88,7 +92,7 @@ class DisposisiController extends Controller
         if (Auth::user()->level == 'master') {
             $view = 'dashboardDisposisi.edit';
         } else {
-            $view = 'dashboardPengguna.disposisi.edt';
+            $view = 'dashboardPengguna.disposisi.edit';
         }
 
         $user = User::all();
@@ -98,7 +102,7 @@ class DisposisiController extends Controller
         return view($view, [
             'suratMasuk' => SuratMasuk::find($disposisi->surat_masuk_id),
             'disposisi' => $disposisi,
-            'users' => User::all()
+            'users' => User::where('level', 'pengguna')->get(),
         ]);
     }
 
@@ -109,13 +113,18 @@ class DisposisiController extends Controller
     {
 
         $rules = [
+            'kode_klasifikasi_arsip' => 'required',
+            'tanggal_penyelesaian' => '',
+            'tanggal' => '',
+            'kepada' => '',
+            'pukul' => '',
             'isi' => 'required',
-            'diketahui' => 'required'
+            'diketahui' => 'required',
         ];
 
         // cek apakah nomor disposisi dirubah : 
-        if ($request->nomor != $disposisi->nomor) {
-            $rules['nomor'] = 'required|unique:disposisis';
+        if ($request->indek_berkas != $disposisi->indek_berkas) {
+            $rules['indek_berkas'] = 'required|unique:disposisis';
         }
 
         // validation rules :

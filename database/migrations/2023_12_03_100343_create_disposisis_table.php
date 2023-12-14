@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('disposisis', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor')->unique();
+            $table->string('indek_berkas')->unique();
+            $table->string('kode_klasifikasi_arsip');
+            $table->date('tanggal_penyelesaian')->nullable();
             $table->text('isi');
             $table->string('diketahui');
-            $table->timestamps();
+            $table->string('kepada')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->time('pukul')->nullable();
+            $table->timestamps(); // default setting
 
             // foreign key : 
             $table->foreignId('surat_masuk_id')->constrained()

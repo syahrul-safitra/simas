@@ -66,10 +66,42 @@
                     <!-- row 3 -->
                     <div class="row">
                         <div class="col-lg-6 mb-3">
+                            <label for="sifat" class="form-label">Sifat</label>
+                            <select class="form-select @error('sifat') is-invalid @enderror" name="sifat" id="sifat">
+                                @if (@old('sifat'))
+                                    @foreach ($sifats as $sifat)
+                                        @if (@old('sifat') == $sifat)
+                                            <option value="{{ $sifat }}" selected>{{ $sifat }}</option>
+                                        @else
+                                            <option value="{{ $sifat }}">{{ $sifat }}</option>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <option value="" selected>Pilih</option>
+                                    @foreach ($sifats as $sifat)
+                                        <option value="{{ $sifat }}">{{ $sifat }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                            @error('sifat')
+                                <div class="invalid-feedback text-red">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <label for="isi" class="form-label">Isi Ringkas</label>
+                            <input type="text" class="form-control @error('isi_ringkas') is-invalid @enderror"
+                                name="isi_ringkas" value="{{ @old('isi_ringkas') }}" id="isi">
+                            @error('isi_ringkas')
+                                <div class="invalid-feedback text-red">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- row 4 -->
+                    <div class="row">
+                        <div class="col-lg-6 mb-3">
                             <label for="status" class="form-label">Status</label>
                             <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-
-
                                 @if (@old('status'))
                                     @foreach ($statuss as $status)
                                         @if (@old('status') == $status)

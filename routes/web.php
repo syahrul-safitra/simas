@@ -5,6 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\DashboardKasubagController;
 use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\SuratMasukController;
+use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\DiteruskanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenggunaController;
@@ -25,18 +26,23 @@ Route::get('/', [DashboardKasubagController::class, 'index'])->middleware('auth'
 Route::get('/instansi', [DashboardKasubagController::class, 'instansi'])->middleware('auth');
 
 // Resource instansi Controller : 
-Route::resource('dashboard/instansi', InstansiController::class)->middleware('auth');
+Route::resource('dashboard/instansi', InstansiController::class)->middleware('master');
 Route::get('dashboard/instansis/delete/{instansi}', [InstansiController::class, 'delete'])->middleware('auth');
 
 // Resource SuratMasuk Controller :
 Route::resource('dashboard/suratmasuk', SuratMasukController::class)->middleware('auth');
 Route::get('dashboard/suratmasuks/delete/{suratMasuk}', [SuratMasukController::class, 'delete'])->middleware('auth');
 
+// Resource SuratKeluar Controller : 
+Route::resource('dashboard/suratkeluar', SuratKeluarController::class)->middleware('auth');
+Route::get('dashboard/suratkeluars/delete/{suratkeluar}', [SuratKeluarController::class, 'delete']);
+
 // Resource Diteruskan Controller :
 Route::resource('dashboard/diteruskan', DiteruskanController::class)->middleware('auth')->except('destroy');
 Route::get('dashboard/diteruskan/create/{id}', [DiteruskanController::class, 'create'])->middleware('auth');
 Route::get('dashboard/diteruskans/delete/{diteruskan}', [DiteruskanController::class, 'delete'])->middleware('auth');
 
+// Resource Disposisi :
 Route::resource('dashboard/disposisi', DisposisiController::class)->middleware('auth');
 Route::get('dashboard/disposisis/create/{suratMasuk}', [DisposisiController::class, 'create']);
 Route::get('dashboard/disposisis/delete/{disposisi}', [DisposisiController::class, 'delete']);

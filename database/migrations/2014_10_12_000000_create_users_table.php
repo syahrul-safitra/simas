@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('status');
             $table->string('level');
+            $table->string('no_wa')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
