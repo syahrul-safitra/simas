@@ -38,6 +38,7 @@ Route::post('dashboard/suratmasuks/cetak', [SuratMasukController::class, 'cetak'
 Route::resource('dashboard/suratkeluar', SuratKeluarController::class)->middleware('auth');
 Route::get('dashboard/suratkeluars/delete/{suratkeluar}', [SuratKeluarController::class, 'delete']);
 Route::get('dashboard/suratkeluars/replyLetter', [SuratKeluarController::class, 'replyLetter']);
+Route::post('dashboard/suratkeluars/cetak', [SuratKeluarController::class, 'cetak']);
 
 // Resource Diteruskan Controller :
 Route::resource('dashboard/diteruskan', DiteruskanController::class)->middleware('auth')->except('destroy');
@@ -86,3 +87,4 @@ Route::get('/test/8', [TestController::class, 'test8']);
 Route::get('/test/9', [TestController::class, 'test9']);
 Route::get('/test/10', [TestController::class, 'test10']);
 Route::get('/test/11', [TestController::class, 'test11']);
+Route::get('/test/12', [TestController::class, 'test12']);

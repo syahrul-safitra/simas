@@ -14,6 +14,8 @@ class SuratMasukController extends Controller
      */
     public function index()
     {
+
+        // return auth()->user();
         return view('dashboardSuratMasuk.index', [
             'suratMasuks' => SuratMasuk::with('instansi')->get(),
         ]);

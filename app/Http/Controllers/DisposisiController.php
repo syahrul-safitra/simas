@@ -25,7 +25,7 @@ class DisposisiController extends Controller
     public function create(SuratMasuk $suratMasuk)
     {
         return view('dashboardDisposisi.create', [
-            'users' => User::where('level', 'pengguna')->get(),
+            'users' => User::where('permission', '1')->get(),
             'suratMasuk' => $suratMasuk
         ]);
     }
@@ -103,7 +103,7 @@ class DisposisiController extends Controller
         return view($view, [
             'suratMasuk' => SuratMasuk::find($disposisi->surat_masuk_id),
             'disposisi' => $disposisi,
-            'users' => User::where('level', 'pengguna')->get(),
+            'users' => User::where('permission', '1')->get(),
         ]);
     }
 
@@ -163,7 +163,7 @@ class DisposisiController extends Controller
 
         return view('dashboardDisposisi.cetak', [
             'disposisi' => $disposisi,
-            'users' => User::where('level', 'pengguna')->get(),
+            'users' => User::where('permission', '1')->get(),
         ]);
     }
 }

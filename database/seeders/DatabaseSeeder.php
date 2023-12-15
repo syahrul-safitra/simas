@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Kasubag',
             'status' => 'kasubag',
             'level' => 'master',
+            'no_wa' => '082387120434',
             'email' => 'kasubag@gmail.com',
             'password' => 'kasubag12'
         ]);
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Staff',
             'status' => 'staff',
             'level' => 'master',
+            'no_wa' => '083165846919',
             'email' => 'staff@gmail.com',
             'password' => 'staff12'
         ]);
@@ -39,6 +41,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Dekan',
             'status' => 'dekan',
             'level' => 'pengguna',
+            'no_wa' => '085788327233',
             'email' => 'dekan@gmail.com',
             'password' => 'dekan12'
         ]);
@@ -47,6 +50,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Wakil Dekan Bidang Akademik dan Kemahasiswaan',
             'status' => 'wd-1',
             'level' => 'pengguna',
+            'no_wa' => '089516134562',
             'email' => 'wdbak@gmail.com',
             'password' => 'wdbak12'
         ]);

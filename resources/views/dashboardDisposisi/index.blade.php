@@ -13,17 +13,17 @@
         <div class="bg-light rounded h-100 p-4">
             <table class="table table-striped table-hover">
                 <div class="d-flex gap-2">
-                    <a href="{{ url('dashboard/suratmasuk') }}" class="btn btn-info  mb-3"><i
+                    <a href="{{ url('dashboard/pengguna') }}" class="btn btn-info  mb-3"><i
                             class="bi bi-arrow-left-circle me-2"></i>Kembali</a>
                     @if (!$disposisi)
                         <a href="{{ url('dashboard/disposisis/create/' . $suratMasuk->id) }} "
                             class="btn btn-primary mb-3"><i class="bi bi-plus-circle me-2"></i>Tambah</a>
                     @else
-                        <a href="{{ url('dashboard/disposisi/' . $disposisi->id) . '/edit' }} "
-                            class="btn btn-warning mb-3"><i class="bi bi-pencil-square me-2"></i>Edit</a>
-
                         <a href="{{ url('dashboard/disposisis/' . $disposisi->id) . '/cetak' }} "
                             class="btn btn-success mb-3"><i class="bi bi-printer me-2"></i>Cetak</a>
+
+                        <a href="{{ url('dashboard/disposisi/' . $disposisi->id) . '/edit' }} "
+                            class="btn btn-warning mb-3"><i class="bi bi-pencil-square me-2"></i>Edit</a>
 
                         <div class="btn btn btn-danger mb-3 " id="btn-delete-disposisi"
                             data-id="{{ url('dashboard/disposisis/delete/' . $disposisi->id) }}">
@@ -80,7 +80,7 @@
                     <tr>
                         <th scope="row" style="width: 30%">Pukul</th>
                         <td style="width: 5%">:</td>
-                        <td style="width: 65%">{!! $disposisi->pukul ? $disposisi->pukul->format('H:i') : '' !!}</td>
+                        <td style="width: 65%">{!! $disposisi ? $disposisi->pukul->format('H:i') : '' !!}</td>
                     </tr>
                     <tr>
                         <th scope="row" style="width: 30%">Diketahui</th>

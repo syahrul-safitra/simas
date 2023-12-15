@@ -199,4 +199,13 @@ class SuratKeluarController extends Controller
         // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
         return redirect('dashboard/suratkeluar')->with('success', 'Surat Keluar has been deleted!');
     }
+
+    public function cetak(Request $request)
+    {
+        return view('dashboardSuratKeluar.cetak', [
+            'suratKeluars' => SuratKeluar::with('instansi')->whereBetween('tanggal_surat_keluar', [$request->tanggal_awal, $request->tanggal_akhir])->orderBy('tanggal_surat_keluar', 'DESC')->get(),
+            'tanggal_awal' => $request->tanggal_awal,
+            'tanggal_akhir' => $request->tanggal_akhir
+        ]);
+    }
 }

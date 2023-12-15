@@ -19,6 +19,9 @@
                         <a href="{{ url('dashboard/disposisis/create/' . $suratMasuk->id) }} "
                             class="btn btn-primary mb-3"><i class="bi bi-plus-circle me-2"></i>Tambah</a>
                     @else
+                        <a href="{{ url('dashboard/disposisis/' . $disposisi->id) . '/cetak' }} "
+                            class="btn btn-success mb-3"><i class="bi bi-printer me-2"></i>Cetak</a>
+
                         <a href="{{ url('dashboard/disposisi/' . $disposisi->id) . '/edit' }} "
                             class="btn btn-warning mb-3"><i class="bi bi-pencil-square me-2"></i>Edit</a>
 

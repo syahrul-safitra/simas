@@ -77,7 +77,8 @@
                             <select class="form-select @error('surat_masuk_id') is-invalid @enderror" name="surat_masuk_id"
                                 id="tindak-lanjut">
                                 @if (@old('surat_masuk_id'))
-                                    @foreach ($suratMasuks as $suratMasuk->id)
+                                    {{-- @dd($suratMasuk->id) --}}
+                                    @foreach ($suratMasuks as $suratMasuk)
                                         @if (@old('suratMasuk->id') == $suratMasuk->id)
                                             <option value="{{ $suratMasuk->id }}" selected>{{ $suratMasuk->no_surat }}
                                             </option>

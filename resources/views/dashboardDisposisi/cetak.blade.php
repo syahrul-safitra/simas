@@ -165,9 +165,16 @@
                     <p>Disampaikan Kepada</p>
 
                     <br>
+
+                    @php
+                        $x = 1;
+                    @endphp
                     @foreach ($users as $user)
                         @if (in_array($user->id, json_decode($disposisi->diketahui)))
-                            <p>{{ $loop->iteration . '.' . $user->name }}</p>
+                            <p>{{ $x . '.' . $user->name }}</p>
+                            @php
+                                $x++;
+                            @endphp
                         @endif
                     @endforeach
                 </div>

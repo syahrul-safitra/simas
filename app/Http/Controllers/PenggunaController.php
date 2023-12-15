@@ -11,9 +11,18 @@ class PenggunaController extends Controller
     public function index()
     {
 
+        // GATE : permission : 
+        $this->authorize('permission');
+
         $KepadaUser = KepadaUser::where('user_id', Auth::user()->id)->get();
 
-        return view('dashboardPengguna.index', [
+        if (Auth::user()->status == 'staff') {
+            $view = 'dashboardStaff.index';
+        } else {
+            $view = 'dashboardPengguna.index';
+        }
+
+        return view($view, [
             'kepadaUsers' => $KepadaUser
         ]);
     }

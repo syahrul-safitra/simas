@@ -1,6 +1,32 @@
 @extends('layouts.main')
 
 @section('container')
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cetak Surat Masuk</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ url('dashboard/suratkeluars/cetak') }}" method="POST">
+                    <div class="modal-body">
+
+                        @csrf
+                        <div class="d-flex justify-content-around">
+                            <input type="date" name="tanggal_awal" required>
+                            <input type="date" name="tanggal_akhir" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Cetak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="col-12">
         <h4 class="mb-2"><i class="bi bi-envelope"></i> Surat Masuk</h4>
         {{-- Session Message --}}
@@ -17,8 +43,12 @@
                         <a href="{{ url('dashboard/suratkeluar/create') }} " class="btn btn-primary mb-3"><i
                                 class="bi bi-plus-circle me-2"></i></i>Tambah</a>
 
-                        <a href="{{ url('dashboard/suratkeluars/replyLetter') }} " class="btn btn-primary mb-3"><i
-                                class="bi bi-plus-circle me-2"></i></i>Balas Surat</a>
+                        <a href="{{ url('dashboard/suratkeluars/replyLetter') }} " class="btn btn-info mb-3"><i
+                                class="bi bi-send me-2"></i></i>Balas Surat</a>
+
+
+                        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                class="bi bi-printer me-2"></i>Cetak</button>
                     </div>
                     <thead>
                         <tr>

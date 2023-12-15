@@ -30,7 +30,7 @@ class DiteruskanController extends Controller
     {
         return view('dashboardDiteruskan.create', [
             'id' => $id,
-            'users' => User::where('level', 'pengguna')->get()
+            'users' => User::where('permission', '1')->get()
         ]);
     }
 
@@ -66,6 +66,50 @@ class DiteruskanController extends Controller
                 'diteruskan_id' => $getDiteruskan->id,
                 'user_id' => $nama
             ]);
+        }
+
+        // beri notif lewat wa : 
+
+        // get nomor : 
+        $users = User::all();
+
+        foreach ($users as $user) {
+            if (in_array($user->id, $validated['nama'])) {
+                $target[] = $user->no_wa;
+            }
+        }
+
+        $nomor = implode(',', $target);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $nomor,
+                'message' => 'Ada surat baru',
+                'delay' => '5-10'
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: 1T0b@R-A_x60R28h2AQF'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        if (curl_errno($curl)) {
+            $error_msg = curl_error($curl);
+        }
+        curl_close($curl);
+
+        if (isset($error_msg)) {
+            echo $error_msg;
         }
 
         return redirect('dashboard/diteruskan/' . $validated['surat_masuk_id'])->with('success', 'Data diteruskan berhasil dibuat!');

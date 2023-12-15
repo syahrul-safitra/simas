@@ -28,5 +28,12 @@
             <a href="{{ url('/dashboard/instansi') }}"
                 class="nav-item nav-link {{ Request::is('dashboard/instansi*') ? 'active' : '' }}"><i
                     class="fa fa-building me-2"></i>Instansi</a>
+
+            {{-- can --}}
+            @can('permission')
+                <a href="{{ url('/dashboard/pengguna') }}"
+                    class="nav-item nav-link {{ Request::is('dashboard/pengguna*') ? 'active' : '' }}"><i
+                        class="bi bi-file-earmark-text-fill me-2"></i>Surat</a>
+            @endcan
     </nav>
 </div>
