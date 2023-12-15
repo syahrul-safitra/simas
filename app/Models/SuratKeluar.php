@@ -24,4 +24,9 @@ class SuratKeluar extends Model
     {
         return $this->belongsTo(SuratMasuk::class);
     }
+
+    public function instansi()
+    {
+        return $this->belongsTo(Instansi::class, 'tujuan');
+    }
 }

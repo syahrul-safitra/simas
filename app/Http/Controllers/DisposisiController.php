@@ -7,6 +7,7 @@ use App\Models\SuratMasuk;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use mPDF;
 
 
 class DisposisiController extends Controller
@@ -154,5 +155,15 @@ class DisposisiController extends Controller
 
         // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
         return redirect('dashboard/disposisi/' . $suratMasukId)->with('success', 'Disposisi has been deleted!');
+    }
+
+    // cetak disposisi : 
+    public function cetak(Disposisi $disposisi)
+    {
+
+        return view('dashboardDisposisi.cetak', [
+            'disposisi' => $disposisi,
+            'users' => User::where('level', 'pengguna')->get(),
+        ]);
     }
 }

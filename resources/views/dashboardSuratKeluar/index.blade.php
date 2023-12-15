@@ -13,8 +13,13 @@
         <div class="bg-light rounded h-100 p-4">
             <div class="table-responsive">
                 <table class="table table-hover" style="color:black">
-                    <a href="{{ url('dashboard/suratkeluar/create') }} " class="btn btn-primary mb-3"><i
-                            class="bi bi-plus-circle me-2"></i></i>Tambah</a>
+                    <div class="d-flex gap-3">
+                        <a href="{{ url('dashboard/suratkeluar/create') }} " class="btn btn-primary mb-3"><i
+                                class="bi bi-plus-circle me-2"></i></i>Tambah</a>
+
+                        <a href="{{ url('dashboard/suratkeluars/replyLetter') }} " class="btn btn-primary mb-3"><i
+                                class="bi bi-plus-circle me-2"></i></i>Balas Surat</a>
+                    </div>
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -37,7 +42,7 @@
                                 <td>{{ $suratKeluar->tanggal_surat_keluar }}</td>
                                 <td>{{ $suratKeluar->sifat }}</td>
                                 <td>{{ $suratKeluar->isi }}</td>
-                                <td>{{ $suratKeluar->SuratMasuk ? $suratKeluar->SuratMasuk->instansi->nama : $suratKeluar->tujuan }}
+                                <td>{{ $suratKeluar->SuratMasuk ? $suratKeluar->SuratMasuk->instansi->nama : $suratKeluar->instansi->nama }}
                                 </td>
                                 <td>{{ $suratKeluar->SuratMasuk ? $suratKeluar->SuratMasuk->no_surat : '' }}</td>
                                 <td>

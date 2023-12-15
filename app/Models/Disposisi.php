@@ -14,4 +14,9 @@ class Disposisi extends Model
     protected $casts = [
         'pukul' => 'datetime'
     ];
+
+    public function suratMasuk()
+    {
+        return $this->belongsTo(SuratMasuk::class);
+    }
 }

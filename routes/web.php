@@ -32,10 +32,12 @@ Route::get('dashboard/instansis/delete/{instansi}', [InstansiController::class, 
 // Resource SuratMasuk Controller :
 Route::resource('dashboard/suratmasuk', SuratMasukController::class)->middleware('auth');
 Route::get('dashboard/suratmasuks/delete/{suratMasuk}', [SuratMasukController::class, 'delete'])->middleware('auth');
+Route::post('dashboard/suratmasuks/cetak', [SuratMasukController::class, 'cetak']);
 
 // Resource SuratKeluar Controller : 
 Route::resource('dashboard/suratkeluar', SuratKeluarController::class)->middleware('auth');
 Route::get('dashboard/suratkeluars/delete/{suratkeluar}', [SuratKeluarController::class, 'delete']);
+Route::get('dashboard/suratkeluars/replyLetter', [SuratKeluarController::class, 'replyLetter']);
 
 // Resource Diteruskan Controller :
 Route::resource('dashboard/diteruskan', DiteruskanController::class)->middleware('auth')->except('destroy');
@@ -46,7 +48,7 @@ Route::get('dashboard/diteruskans/delete/{diteruskan}', [DiteruskanController::c
 Route::resource('dashboard/disposisi', DisposisiController::class)->middleware('auth');
 Route::get('dashboard/disposisis/create/{suratMasuk}', [DisposisiController::class, 'create']);
 Route::get('dashboard/disposisis/delete/{disposisi}', [DisposisiController::class, 'delete']);
-
+Route::get('dashboard/disposisis/{disposisi}/cetak', [DisposisiController::class, 'cetak']);
 
 // Route Pengguna : 
 Route::get('dashboard/pengguna', [PenggunaController::class, 'index'])->middleware('auth');

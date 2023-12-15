@@ -74,38 +74,57 @@
                     <div class="row">
                         <div class="col-lg-6 mb-3">
                             <label for="tujuan" class="form-label">Tujuan</label>
+
                             @if ($suratKeluar->surat_masuk_id)
                                 <input type="text" class="form-control @error('tujuan') is-invalid @enderror"
                                     name="tujuan" value="{{ @old('tujuan', $suratKeluar->tujuan) }}" id="tujuan"
                                     autocomplete="off" readonly>
                             @else
-                                <input type="text" class="form-control @error('tujuan') is-invalid @enderror"
-                                    name="tujuan" value="{{ @old('tujuan', $suratKeluar->tujuan) }}" id="tujuan"
-                                    autocomplete="off">
+                                <select class="form-select @error('tujuan') is-invalid @enderror" name="tujuan"
+                                    id="tujuan">
+                                    @if (@old('tujuan'))
+                                        @foreach ($instansis as $instansi)
+                                            @if (@old('tujuan') == $instansi->id)
+                                                <option value="{{ $instansi->id }}" selected>{{ $instansi->nama }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $instansi->id }}">{{ $instansi->nama }}</option>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        @foreach ($instansis as $instansi)
+                                            @if ($suratKeluar->instansi->id == $instansi->id)
+                                                <option value="{{ $instansi->id }}" selected>{{ $instansi->nama }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $instansi->id }}">{{ $instansi->nama }}</option>
+                                            @endif
+                                        @endforeach
+                                    @endif
                             @endif
+                            </select>
                             @error('tujuan')
                                 <div class="invalid-feedback text-red">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-lg-6 mb-3">
-                            <label for="tindak-lanjut" class="form-label">Tindak Lanjut Surat Dari</label>
+
+                            @if ($suratKeluar->surat_masuk_id)
+                                <label for="tindak-lanjut" class="form-label">Tindak Lanjut Surat Dari</label>
+                                <select class="form-select @error('surat_masuk_id') is-invalid @enderror"
+                                    name="surat_masuk_id" id="tindak-lanjut">
 
 
-
-                            <select class="form-select @error('surat_masuk_id') is-invalid @enderror" name="surat_masuk_id"
-                                id="tindak-lanjut">
-
-
-                                @if ($suratKeluar->surat_masuk_id)
+                                    {{-- @if ($suratKeluar->surat_masuk_id) --}}
                                     <option value="{{ $suratKeluar->surat_masuk_id }}" selected>
                                         {{ $suratKeluar->suratMasuk->no_surat }}
                                     </option>
-                                @else
+                                    {{-- @else
                                     <option value="">Pilih</option>
-                                @endif
+                                @endif --}}
 
 
-                                {{-- @if (@old('surat_masuk_id'))
+                                    {{-- @if (@old('surat_masuk_id'))
                                     @foreach ($suratMasuks as $suratMasuk->id)
                                         @if (@old('suratMasuk->id') == $suratMasuk->id)
                                             <option value="{{ $suratMasuk->id }}" selected>{{ $suratMasuk->no_surat }}
@@ -125,18 +144,16 @@
                                         @endforeach
                                     @endif
                                 @endif --}}
-                            </select>
-                            @error('sifat')
-                                <div class="invalid-feedback text-red">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                                </select>
+                                @error('sifat')
+                                    <div class="invalid-feedback text-red">{{ $message }}</div>
+                                @enderror
+                            @else
+                                <label for="file" class="form-label">File</label>
+                                <input class="form-control" type="file" name="file" id="file"
+                                    accept="application/pdf">
+                            @endif
 
-                    <div class="row">
-                        <div class="col-lg-6 mb-3">
-                            <label for="file" class="form-label">File</label>
-                            <input class="form-control" type="file" name="file" id="file"
-                                accept="application/pdf">
                         </div>
                     </div>
 

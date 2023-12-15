@@ -16,4 +16,9 @@ class Instansi extends Model
     {
         return $this->hasMany(SuratMasuk::class);
     }
+
+    // public function suratKeluar()
+    // {
+    //     return $this->hasMany(SuratKeluar::class, 'tujuan', 'id');
+    // }
 }

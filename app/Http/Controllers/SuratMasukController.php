@@ -168,4 +168,23 @@ class SuratMasukController extends Controller
         // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
         return redirect('dashboard/suratmasuk')->with('success', 'Surat Masuk has been deleted!');
     }
+
+    // cetak : 
+    public function cetak(Request $request)
+    {
+
+        // $mpdf = new \Mpdf\Mpdf();
+        // $mpdf->WriteHTML(view('dashboardSuratMasuk.cetak', [
+        //     'suratMasuks' => SuratMasuk::with('instansi')->whereBetween('tanggal_diterima', [$request->tanggal_awal, $request->tanggal_akhir])->orderBy('tanggal_diterima', 'DESC')->get(),
+        //     'tanggal_awal' => $request->tanggal_awal,
+        //     'tanggal_akhir' => $request->tanggal_akhir
+        // ]));
+        // $mpdf->Output();
+
+        return view('dashboardSuratMasuk.cetak', [
+            'suratMasuks' => SuratMasuk::with('instansi')->whereBetween('tanggal_diterima', [$request->tanggal_awal, $request->tanggal_akhir])->orderBy('tanggal_diterima', 'DESC')->get(),
+            'tanggal_awal' => $request->tanggal_awal,
+            'tanggal_akhir' => $request->tanggal_akhir
+        ]);
+    }
 }

@@ -27,4 +27,9 @@ class SuratMasuk extends Model
     {
         return $this->hasOne(SuratKeluar::class);
     }
+
+    public function disposisi()
+    {
+        return $this->hasOne(Disposisi::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SuratKeluar;
 use App\Models\SuratMasuk;
+use App\Models\Instansi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -29,6 +30,18 @@ class SuratKeluarController extends Controller
         // dd();
         $sifat = ['biasa', 'rahasia', 'sangat rahasia'];
         return view('dashboardSuratKeluar.create', [
+            'sifats' => $sifat,
+            'suratMasuks' => SuratMasuk::where('status', 'ditindak lanjuti')
+                ->where('keadaan', 'proses')->get(),
+            'instansis' => Instansi::all()
+        ]);
+    }
+
+    public function replyLetter()
+    {
+
+        $sifat = ['biasa', 'rahasia', 'sangat rahasia'];
+        return view('dashboardSuratKeluar.replyLetter', [
             'sifats' => $sifat,
             'suratMasuks' => SuratMasuk::where('status', 'ditindak lanjuti')
                 ->where('keadaan', 'proses')->get()
@@ -102,6 +115,7 @@ class SuratKeluarController extends Controller
         return view('dashboardSuratKeluar.edit', [
             'sifats' => $sifat,
             'suratKeluar' => $suratkeluar,
+            'instansis' => Instansi::all()
             // 'suratMasuks' => SuratMasuk::where('status', 'ditindak lanjuti')
             //     ->where('keadaan', 'proses')->get()
         ]);
