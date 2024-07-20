@@ -99,6 +99,12 @@
                         @endforeach
                     </tbody>
                 </table>
+
+
+                {{-- link pagination --}}
+                <div class="d-flex flex-column">
+                    {{ $suratKeluars->links() }}
+                </div>
             </div>
         </div>
     </div>

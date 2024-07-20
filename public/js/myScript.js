@@ -127,4 +127,27 @@ $(document).ready(function () {
 
 
    })
+
+   $('#search').on('keyup', function (e) {
+      e.preventDefault();
+
+      var data = $(this).val();
+
+      const table_data = $('.table-data');
+
+      // ajax : 
+      $.ajax({
+         url: 'carisuratmasuk/ajax',
+         method: 'GET',
+         data: { data: data },
+         success: function (res) {
+
+            console.log(res);
+            table_data.html(res);
+            if (res.status == 'nothing_found') {
+               table_data.html('<span class="text-danger">' + 'Nothing Found' + '</span>');
+            }
+         }
+      })
+   })
 });

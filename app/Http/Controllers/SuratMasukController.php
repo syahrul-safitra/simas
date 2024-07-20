@@ -17,7 +17,7 @@ class SuratMasukController extends Controller
 
         // return auth()->user();
         return view('dashboardSuratMasuk.index', [
-            'suratMasuks' => SuratMasuk::with('instansi')->get(),
+            'suratMasuks' => SuratMasuk::with('instansi')->orderByDesc('tanggal_diterima')->paginate(20),
         ]);
     }
 
@@ -184,9 +184,39 @@ class SuratMasukController extends Controller
         // $mpdf->Output();
 
         return view('dashboardSuratMasuk.cetak', [
-            'suratMasuks' => SuratMasuk::with('instansi')->whereBetween('tanggal_diterima', [$request->tanggal_awal, $request->tanggal_akhir])->orderBy('tanggal_diterima', 'DESC')->get(),
+            'suratMasuks' => SuratMasuk::with('instansi')->whereBetween('tanggal_diterima', [$request->tanggal_awal, $request->tanggal_akhir])->orderBy('tanggal_diterima', 'ASC')->get(),
             'tanggal_awal' => $request->tanggal_awal,
             'tanggal_akhir' => $request->tanggal_akhir
         ]);
+    }
+
+    // for kasubag :
+    public function cari1()
+    {
+        return view('dashboardSuratMasuk.cari1', [
+            'suratMasuks' => SuratMasuk::with('instansi')->get()
+        ]);
+    }
+
+    public function ajax(Request $request)
+    {
+
+        $result = SuratMasuk::with('instansi')->where('instansi_id', 'like', '%' . $request->data . '%')
+            ->orWhere('no_surat', 'like', '%' . $request->data . '%')
+            ->orWhere('tanggal_surat', 'like', '%' . $request->data . '%')
+            ->orWhere('tanggal_diterima', 'like', '%' . $request->data . '%')
+            ->orWhere('isi_ringkas', 'like', '%' . $request->data . '%')
+            ->orWhere('sifat', 'like', '%' . $request->data . '%')
+            ->get();
+
+        if ($result->count() >= 1) {
+            return view('dashboardSuratMasuk.result1', [
+                'suratMasuks' => $result
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'nothing_found'
+            ]);
+        }
     }
 }

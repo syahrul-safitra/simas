@@ -10,9 +10,4 @@ class DashboardKasubagController extends Controller
     {
         return view('dashboardKasubag.index');
     }
-
-    public function instansi()
-    {
-        return view('dashboardKasubag.instansi');
-    }
 }

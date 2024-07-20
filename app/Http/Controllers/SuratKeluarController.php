@@ -17,7 +17,7 @@ class SuratKeluarController extends Controller
     {
         // dd(SuratKeluar::all());
         return view('dashboardSuratKeluar.index', [
-            'suratKeluars' => SuratKeluar::all()
+            'suratKeluars' => SuratKeluar::latest()->paginate(20),
         ]);
     }
 

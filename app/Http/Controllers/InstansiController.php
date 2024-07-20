@@ -13,7 +13,7 @@ class InstansiController extends Controller
     public function index()
     {
         return view('dashboardInstansi.index', [
-            'instansis' => Instansi::latest()->paginate(5),
+            'instansis' => Instansi::latest()->paginate(20),
         ]);
     }
 

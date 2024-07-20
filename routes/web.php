@@ -33,6 +33,8 @@ Route::get('dashboard/instansis/delete/{instansi}', [InstansiController::class, 
 Route::resource('dashboard/suratmasuk', SuratMasukController::class)->middleware('auth');
 Route::get('dashboard/suratmasuks/delete/{suratMasuk}', [SuratMasukController::class, 'delete'])->middleware('auth');
 Route::post('dashboard/suratmasuks/cetak', [SuratMasukController::class, 'cetak']);
+Route::get('carisuratmasuk', [SuratMasukController::class, 'cari1']);
+Route::get('carisuratmasuk/ajax', [SuratMasukController::class, 'ajax']);
 
 // Resource SuratKeluar Controller : 
 Route::resource('dashboard/suratkeluar', SuratKeluarController::class)->middleware('auth');
