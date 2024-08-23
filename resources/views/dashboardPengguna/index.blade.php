@@ -29,9 +29,18 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $kepadaUser->diteruskan->suratMasuk->instansi->nama }}</td>
                                 <td>{{ $kepadaUser->diteruskan->suratMasuk->status }}</td>
-                                <td><a href="{{ url('file/' . $kepadaUser->diteruskan->suratMasuk->file) }}">y</a></td>
-                                <td><a
-                                        href="{{ url('dashboard/disposisi/' . $kepadaUser->diteruskan->suratMasuk->id) }}">D</a>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="fs-4" style="color: red"
+                                            href="{{ asset('file/' . $kepadaUser->diteruskan->suratMasuk->file) }}"><i
+                                                class="bi bi-file-earmark-pdf-fill"></i></a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{ url('dashboard/disposisi/' . $kepadaUser->diteruskan->suratMasuk->id) }}"
+                                        class="btn btn-success"
+                                        style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px"><i
+                                            class="bi bi-file-earmark-arrow-up"></i></a>
                                 </td>
                             </tr>
                         @endforeach

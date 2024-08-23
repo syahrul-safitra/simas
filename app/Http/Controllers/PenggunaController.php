@@ -14,7 +14,7 @@ class PenggunaController extends Controller
         // GATE : permission : 
         $this->authorize('permission');
 
-        $KepadaUser = KepadaUser::where('user_id', Auth::user()->id)->get();
+        $KepadaUser = KepadaUser::with(['diteruskan.suratMasuk.instansi'])->where('user_id', Auth::user()->id)->get();
 
         if (Auth::user()->status == 'staff') {
             $view = 'dashboardStaff.index';

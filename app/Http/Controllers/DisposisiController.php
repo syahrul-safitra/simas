@@ -24,7 +24,16 @@ class DisposisiController extends Controller
      */
     public function create(SuratMasuk $suratMasuk)
     {
-        return view('dashboardDisposisi.create', [
+
+        $view = "";
+        // jika level adalah master maka tampilkan create disposisi master : 
+        if (auth()->user()->level == 'master') {
+            $view = 'dashboardDisposisi.create';
+        } else {
+            $view = 'dashboardPengguna.disposisi.create';
+        }
+
+        return view($view, [
             'users' => User::where('permission', '1')->get(),
             'suratMasuk' => $suratMasuk
         ]);
@@ -144,7 +153,14 @@ class DisposisiController extends Controller
      */
     public function destroy(Disposisi $disposisi)
     {
-        return $disposisi->nomor;
+        $suratMasukId = $disposisi->surat_masuk_id;
+
+        // hapus data dari db : 
+        Disposisi::destroy($disposisi->id);
+
+        // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
+        return redirect('dashboard/disposisi/' . $suratMasukId)->with('success', 'Disposisi has been deleted!');
+
     }
     public function delete(Disposisi $disposisi)
     {
@@ -160,7 +176,6 @@ class DisposisiController extends Controller
     // cetak disposisi : 
     public function cetak(Disposisi $disposisi)
     {
-
         return view('dashboardDisposisi.cetak', [
             'disposisi' => $disposisi,
             'users' => User::where('permission', '1')->get(),

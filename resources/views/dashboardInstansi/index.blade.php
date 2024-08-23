@@ -12,7 +12,7 @@
         @endif
         <div class="bg-light rounded h-100 p-4">
             <div class="table-responsive">
-                <table class="table table-hover" style="color:black">
+                <table class="table table-hover" style="color:black" id="table-instansi">
                     <a href="{{ url('dashboard/instansi/create') }} " class="btn btn-primary mb-3"><i
                             class="bi bi-plus-circle me-2"></i></i>Add
                         Instansi</a>
@@ -37,11 +37,21 @@
                                             style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px"><i
                                                 class="bi bi-pencil-square"></i></a>
 
-                                        <div class="btn btn btn-danger btn-delete-instansi"
+                                        {{-- <div class="btn btn btn-danger btn-delete-instansi"
                                             data-id="{{ url('dashboard/instansis/delete/' . $instansi->id) }}"
                                             style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
                                             <i class="bi bi-trash"></i>
-                                        </div>
+                                        </div> --}}
+
+                                        <form action="{{ url('dashboard/instansi/' . $instansi->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-delete-instansi"
+                                                style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+
                                     </div>
                                 </td>
                             </tr>

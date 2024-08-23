@@ -81,26 +81,63 @@ class DiteruskanController extends Controller
 
         $nomor = implode(',', $target);
 
+        // $curl = curl_init();
+
+        // curl_setopt_array(
+        //     $curl,
+        //     array(
+        //         CURLOPT_URL => 'https://api.fonnte.com/send',
+        //         CURLOPT_RETURNTRANSFER => true,
+        //         CURLOPT_ENCODING => '',
+        //         CURLOPT_MAXREDIRS => 10,
+        //         CURLOPT_TIMEOUT => 0,
+        //         CURLOPT_FOLLOWLOCATION => true,
+        //         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //         CURLOPT_CUSTOMREQUEST => 'POST',
+        //         CURLOPT_POSTFIELDS => array(
+        //             'target' => $nomor,
+        //             'message' => 'Ada surat baru',
+        //             'delay' => '5-10'
+        //         ),
+        //         CURLOPT_HTTPHEADER => array(
+        //             'Authorization: f6A5re5CVPn_a!o3219fk#+c!H4nLU@+Tn7BVU6g!'
+        //         ),
+        //     )
+        // );
+
+        // $response = curl_exec($curl);
+        // if (curl_errno($curl)) {
+        //     $error_msg = curl_error($curl);
+        // }
+        // curl_close($curl);
+
+        // if (isset($error_msg)) {
+        //     echo $error_msg;
+        // }
+
         $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.fonnte.com/send',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'target' => $nomor,
-                'message' => 'Ada surat baru',
-                'delay' => '5-10'
-            ),
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: 1T0b@R-A_x60R28h2AQF'
-            ),
-        ));
+        curl_setopt_array(
+            $curl,
+            array(
+                CURLOPT_URL => 'https://api.fonnte.com/send',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'target' => '081213215911',
+                    'message' => 'test message',
+                    'countryCode' => '62', //optional
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: 4-E_!DH-PoPo#H1_snd3' //change TOKEN to your actual token
+                ),
+            )
+        );
 
         $response = curl_exec($curl);
         if (curl_errno($curl)) {
@@ -111,6 +148,7 @@ class DiteruskanController extends Controller
         if (isset($error_msg)) {
             echo $error_msg;
         }
+        echo $response;
 
         return redirect('dashboard/diteruskan/' . $validated['surat_masuk_id'])->with('success', 'Data diteruskan berhasil dibuat!');
     }
@@ -190,15 +228,19 @@ class DiteruskanController extends Controller
      */
     public function destroy(Diteruskan $diteruskan)
     {
-        // 
-    }
-
-    public function delete(Diteruskan $diteruskan)
-    {
         $suratMasukId = $diteruskan->surat_masuk_id;
 
         Diteruskan::destroy($diteruskan->id);
 
         return redirect('dashboard/diteruskan/' . $suratMasukId)->with('success', 'Diteruskan has been deleted!');
     }
+
+    // public function delete(Diteruskan $diteruskan)
+    // {
+    //     $suratMasukId = $diteruskan->surat_masuk_id;
+
+    //     Diteruskan::destroy($diteruskan->id);
+
+    //     return redirect('dashboard/diteruskan/' . $suratMasukId)->with('success', 'Diteruskan has been deleted!');
+    // }
 }

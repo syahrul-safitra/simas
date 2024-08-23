@@ -32,4 +32,17 @@ class SuratMasuk extends Model
     {
         return $this->hasOne(Disposisi::class);
     }
+
+    public function scopesurat_masuk_all($query)
+    {
+        return $query->count();
+    }
+
+
+    public function scopesurat_masuk_bulan_ini($query)
+    {
+        return $query->whereYear('tanggal_diterima', date('Y'))
+            ->whereMonth('tanggal_diterima', date('m'))
+            ->count();
+    }
 }

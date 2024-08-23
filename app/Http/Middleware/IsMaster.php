@@ -16,14 +16,11 @@ class IsMaster
     public function handle(Request $request, Closure $next): Response
     {
 
-        // jika user belum login :
-        if (!auth()->check()) {
-            return redirect('login');
+        if (auth()->user()->level == 'master') {
+            return $next($request);
         }
 
-        if (auth()->user()->level !== 'master') {
-            return redirect('dashboard/pengguna');
-        }
-        return $next($request);
+        return redirect('dashboard/pengguna');
+
     }
 }

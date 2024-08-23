@@ -11,23 +11,29 @@
             </div>
         @endif
         <div class="bg-light rounded h-100 p-4">
-            <table class="table table-striped table-hover">
-                <div class="d-flex gap-2">
-                    <a href="{{ url('dashboard/suratmasuk') }}" class="btn btn-info  mb-3"><i
-                            class="bi bi-arrow-left-circle me-2"></i>Kembali</a>
-                    @if (!$diteruskan)
-                        <a href="{{ url('dashboard/diteruskan/create/' . $suratMasuk->id) }} "
-                            class="btn btn-primary mb-3"><i class="bi bi-plus-circle me-2"></i></i>Tambah</a>
-                    @else
-                        <a href="{{ url('dashboard/diteruskan/' . $diteruskan->id) . '/edit' }} "
-                            class="btn btn-warning mb-3"><i class="bi bi-pencil-square me-2"></i></i>Edit</a>
 
-                        <div class="btn btn btn-danger mb-3 " id="btn-delete-diteruskan"
-                            data-id="{{ url('dashboard/diteruskans/delete/' . $diteruskan->id) }}">
-                            <i class="bi bi-trash me-2"></i>Hapus
-                        </div>
-                    @endif
-                </div>
+            <div class="d-flex gap-2">
+
+                <a href="{{ url('dashboard/suratmasuk') }}" class="btn btn-info  mb-3"><i
+                        class="bi bi-arrow-left-circle me-2"></i>Kembali</a>
+                @if (!$diteruskan)
+                    <a href="{{ url('dashboard/diteruskan/create/' . $suratMasuk->id) }} " class="btn btn-primary mb-3"><i
+                            class="bi bi-plus-circle me-2"></i></i>Tambah</a>
+                @else
+                    <a href="{{ url('dashboard/diteruskan/' . $diteruskan->id) . '/edit' }} "
+                        class="btn btn-warning mb-3"><i class="bi bi-pencil-square me-2"></i></i>Edit</a>
+
+                    <form action="{{ url('dashboard/diteruskan/' . $diteruskan->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-delete-diteruskan">
+                            <i class="bi bi-trash"> </i>Hapus
+                        </button>
+                    </form>
+                @endif
+
+            </div>
+            <table class="table table-striped table-hover">
                 <tbody>
                     <tr>
                         <th scope="row" style="width: 30%">Nomor Surat</th>

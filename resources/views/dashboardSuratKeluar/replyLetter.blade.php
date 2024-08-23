@@ -4,7 +4,7 @@
     <div class="row g-4">
         <div class="col-sm-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Create new incoming mail</h6>
+                <h6 class="mb-4">Balas Surat</h6>
                 <form action="{{ url('dashboard/suratkeluar') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <!-- row 1 -->
@@ -64,20 +64,21 @@
 
                     <!-- row 3 -->
                     <div class="row">
+
                         <div class="col-lg-6 mb-3">
                             <label for="tujuan" class="form-label">Tujuan</label>
                             <input type="text" class="form-control @error('tujuan') is-invalid @enderror" name="tujuan"
-                                value="{{ @old('tujuan') }}" id="tujuan" readonly>
+                                value="{{ @old('tujuan') }}" id="tujuan-surat" readonly>
                             @error('tujuan')
                                 <div class="invalid-feedback text-red">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="col-lg-6 mb-3">
                             <label for="tindak-lanjut" class="form-label">Tindak Lanjut Surat Dari</label>
                             <select class="form-select @error('surat_masuk_id') is-invalid @enderror" name="surat_masuk_id"
                                 id="tindak-lanjut">
                                 @if (@old('surat_masuk_id'))
-                                    {{-- @dd($suratMasuk->id) --}}
                                     @foreach ($suratMasuks as $suratMasuk)
                                         @if (@old('suratMasuk->id') == $suratMasuk->id)
                                             <option value="{{ $suratMasuk->id }}" selected>{{ $suratMasuk->no_surat }}

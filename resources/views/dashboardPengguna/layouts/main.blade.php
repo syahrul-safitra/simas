@@ -30,6 +30,7 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 
+    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
 
     <style>
         trix-toolbar [data-trix-button-group='file-tools'] {
@@ -184,7 +185,10 @@
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
     {{-- My JS Script --}}
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/myScript.js') }}"></script>
+
 </body>
 
 

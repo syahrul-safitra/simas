@@ -20,7 +20,7 @@
                         <div class="col-lg-6 mb-3">
                             <label for="instansi" class="form-label">Instansi</label>
                             <select class="form-select @error('instansi_id') is-invalid @enderror" name="instansi_id"
-                                id="instansi">
+                                id="instansi" style="width: 100%">
                                 @if (@old('instansi_id'))
                                     @foreach ($instansis as $instansi)
                                         @if (@old('instansi_id') == $instansi->id)

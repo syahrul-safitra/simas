@@ -24,9 +24,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        // GATE : user permission : 
+        // GATE : user non kasubag : permission : 
         Gate::define('permission', function (User $user) {
             return $user->permission == '1';
+        });
+
+        Gate::define('kasubag', function (User $user) {
+            return $user->permission == '0';
         });
     }
 }

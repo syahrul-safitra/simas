@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'status',
         'level',
-        'no-wa',
+        'no_wa',
         'email',
         'password',
     ];

@@ -15,9 +15,8 @@ class SuratMasukController extends Controller
     public function index()
     {
 
-        // return auth()->user();
         return view('dashboardSuratMasuk.index', [
-            'suratMasuks' => SuratMasuk::with('instansi')->orderByDesc('tanggal_diterima')->paginate(20),
+            'suratMasuks' => SuratMasuk::with('instansi')->orderByDesc('tanggal_diterima')->get(),
         ]);
     }
 
@@ -26,7 +25,6 @@ class SuratMasukController extends Controller
      */
     public function create()
     {
-
         $dataStatus = ['diketahui', 'dihadiri', 'ditindak lanjuti'];
         $dataSifat = ['biasa', 'rahasia', 'sangat rahasia'];
         return view('dashboardSuratMasuk.create', [
@@ -156,7 +154,15 @@ class SuratMasukController extends Controller
      */
     public function destroy(SuratMasuk $suratmasuk)
     {
-        //
+
+        // hapus data file terlebih dahulu : 
+        File::delete('file/' . $suratmasuk->file);
+
+        // hapus data dari db : 
+        SuratMasuk::destroy($suratmasuk->id);
+
+        // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
+        return redirect('dashboard/suratmasuk')->with('success', 'Surat telah dihapus!');
     }
 
     public function delete(SuratMasuk $suratMasuk)
@@ -168,20 +174,12 @@ class SuratMasukController extends Controller
         SuratMasuk::destroy($suratMasuk->id);
 
         // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
-        return redirect('dashboard/suratmasuk')->with('success', 'Surat Masuk has been deleted!');
+        return redirect('dashboard/suratmasuk')->with('success', 'Surat telah dihapus!');
     }
 
     // cetak : 
     public function cetak(Request $request)
     {
-
-        // $mpdf = new \Mpdf\Mpdf();
-        // $mpdf->WriteHTML(view('dashboardSuratMasuk.cetak', [
-        //     'suratMasuks' => SuratMasuk::with('instansi')->whereBetween('tanggal_diterima', [$request->tanggal_awal, $request->tanggal_akhir])->orderBy('tanggal_diterima', 'DESC')->get(),
-        //     'tanggal_awal' => $request->tanggal_awal,
-        //     'tanggal_akhir' => $request->tanggal_akhir
-        // ]));
-        // $mpdf->Output();
 
         return view('dashboardSuratMasuk.cetak', [
             'suratMasuks' => SuratMasuk::with('instansi')->whereBetween('tanggal_diterima', [$request->tanggal_awal, $request->tanggal_akhir])->orderBy('tanggal_diterima', 'ASC')->get(),

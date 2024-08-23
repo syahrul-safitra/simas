@@ -21,4 +21,9 @@ class Instansi extends Model
     // {
     //     return $this->hasMany(SuratKeluar::class, 'tujuan', 'id');
     // }
+
+    public function scopeseluruh_instansi($query)
+    {
+        return $query->count();
+    }
 }

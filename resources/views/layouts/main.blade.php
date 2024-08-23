@@ -30,6 +30,9 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+
     <style>
         trix-toolbar [data-trix-button-group='file-tools'] {
             display: none;
@@ -184,9 +187,11 @@
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
     {{-- My JS Script --}}
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+
     <script src="{{ asset('js/myScript.js') }}"></script>
+
 </body>
-
-
 
 </html>

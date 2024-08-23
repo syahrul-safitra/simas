@@ -6,6 +6,7 @@ use App\Models\SuratKeluar;
 use App\Models\SuratMasuk;
 use App\Models\Instansi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class SuratKeluarController extends Controller
@@ -175,15 +176,6 @@ class SuratKeluarController extends Controller
      */
     public function destroy(SuratKeluar $suratkeluar)
     {
-        //
-    }
-
-    public function delete(SuratKeluar $suratkeluar)
-    {
-        // get nama file 
-        $fileName = $suratkeluar->file;
-
-        // cek apakah surat masuk id ada atau tidak : 
         if ($suratkeluar->surat_masuk_id) {
             // jika true ubah valuenya : 
             SuratMasuk::where('id', $suratkeluar->surat_masuk_id)
@@ -197,7 +189,45 @@ class SuratKeluarController extends Controller
         File::delete('file/' . $suratkeluar->file);
 
         // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
-        return redirect('dashboard/suratkeluar')->with('success', 'Surat Keluar has been deleted!');
+        return redirect('dashboard/suratkeluar')->with('success', 'Surat Keluar telah dihapus!');
+    }
+
+    public function delete(SuratKeluar $suratkeluar)
+    {
+
+        // cek apakah surat masuk id ada atau tidak : 
+        if ($suratkeluar->surat_masuk_id) {
+
+            DB::beginTransaction();
+            try {
+                // jika true ubah valuenya : 
+                SuratMasuk::where('id', $suratkeluar->surat_masuk_id)
+                    ->update(['keadaan' => 'proses']);
+                // hapus datanya : 
+                SuratKeluar::destroy($suratkeluar->id);
+
+                // hapus filenya : 
+                File::delete('file/' . $suratkeluar->file);
+
+                DB::commit();
+
+
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return redirect('dashboard/suratkeluar')->with('error', $e->getMessage());
+            }
+        } else {
+            // hapus datanya : 
+            SuratKeluar::destroy($suratkeluar->id);
+
+            // hapus filenya : 
+            File::delete('file/' . $suratkeluar->file);
+
+            // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 
+            return redirect('dashboard/suratkeluar')->with('success', 'Surat Keluar telah dihapus!');
+        }
+
+
     }
 
     public function cetak(Request $request)

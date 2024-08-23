@@ -19,17 +19,26 @@
         <div class="navbar-nav w-100">
             <a href="{{ url('/') }}" class="nav-item nav-link"><i
                     class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+
             <a href="{{ url('dashboard/suratmasuk') }}"
                 class="nav-item nav-link {{ (Request::is('dashboard/suratmasuk*') ? 'active' : '' || Request::is('dashboard/diteruskan*') || Request::is('dashboard/disposisi*')) ? 'active' : '' }}"><i
                     class="fa fa-envelope me-2"></i>Surat Masuk</a>
+
             <a href="{{ url('dashboard/suratkeluar') }}"
                 class="nav-item nav-link {{ Request::is('dashboard/suratkeluar*') ? 'active' : '' }}"><i
                     class="fa fa-reply me-2"></i>Surat Keluar</a>
+
             <a href="{{ url('/dashboard/instansi') }}"
                 class="nav-item nav-link {{ Request::is('dashboard/instansi*') ? 'active' : '' }}"><i
                     class="fa fa-building me-2"></i>Instansi</a>
 
-            {{-- can --}}
+
+            @can('kasubag')
+                <a href="{{ url('/dashboard/user') }}"
+                    class="nav-item nav-link {{ Request::is('dashboard/user*') ? 'active' : '' }}"><i
+                        class="fas fa-users"></i>User</a>
+            @endcan
+
             @can('permission')
                 <a href="{{ url('/dashboard/pengguna') }}"
                     class="nav-item nav-link {{ Request::is('dashboard/pengguna*') ? 'active' : '' }}"><i

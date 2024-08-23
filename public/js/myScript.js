@@ -1,18 +1,27 @@
 
 // javascript code:
 $(document).ready(function () {
+
    console.log('ini berhasil?' + ' iya donk');
 
-   // get btn-delete-instansi : 
+   $('#surat_masuk').DataTable();
+   $('#surat_keluar').DataTable();
+   $('#table-instansi').DataTable();
+   $('#instansi').select2();
+   $('#tujuan').select2();
+   $('#tindak-lanjut').select2();
+   
    $('.btn-delete-suratmasuk').on('click', function (e) {
       e.preventDefault();
 
-      // get data => href;
-      const data = $(this).data('id');
+      console.info($(this));
+
+      console.log('button delete surat masuk sudah ditekan!');
+      let form = $(this).closest('form');
 
       swal({
          title: "Apakah anda yakin?",
-         text: "Data instansi akan dihapus",
+         text: "Data surat masuk akan dihapus",
          icon: "warning",
          buttons: true,
          dangerMode: true,
@@ -20,7 +29,7 @@ $(document).ready(function () {
          // jika tombol yes maka pergi ke location href :
          .then((willdelete) => {
             if (willdelete) {
-               document.location.href = data;
+               form.submit();
             }
          })
 
@@ -28,11 +37,9 @@ $(document).ready(function () {
 
    $('.btn-delete-instansi').on('click', function (e) {
 
-      console.log('testingg');
       e.preventDefault();
 
-      // get data href ;
-      const data = $(this).data('id');
+      let form = $(this).closest('form');
 
       swal({
          title: 'Apakah anda yakin?',
@@ -44,17 +51,18 @@ $(document).ready(function () {
          // jika btn ok di klik : 
          .then((willdelete) => {
             if (willdelete) {
-               document.location.href = data;
+               form.submit();
             }
          })
    })
 
-   $('#btn-delete-diteruskan').on('click', function (e) {
+   $('.btn-delete-diteruskan').on('click', function (e) {
       e.preventDefault();
 
-      // get data href : 
-      const data = $(this).data('id');
+      let form = $(this).closest('form');
 
+      console.log('disini berhasil');
+      console.info(form);
       swal({
          title: 'Apakah anda yakin?',
          text: 'Data diteruskan akan dihapus',
@@ -65,7 +73,7 @@ $(document).ready(function () {
          // jika btn ok di klik : 
          .then((willdelete) => {
             if (willdelete) {
-               document.location.href = data;
+               form.submit();
             }
          })
    })
@@ -74,6 +82,8 @@ $(document).ready(function () {
       e.preventDefault();
 
       const data = $(this).data('id');
+
+      let form = $(this).closest('form');
 
       console.log(data);
       swal({
@@ -86,13 +96,13 @@ $(document).ready(function () {
          // jika btn ok di klik : 
          .then((willdelete) => {
             if (willdelete) {
-               document.location.href = data;
+               form.submit();
             }
          })
    })
 
    $('#tindak-lanjut').on('change', function () {
-      const tujuan = $('#tujuan');
+      const tujuan = $('#tujuan-surat');
 
       var data = $(this).val();
       if (data != '') {
@@ -107,10 +117,9 @@ $(document).ready(function () {
    $('.btn-delete-suratkeluar').on('click', function (e) {
 
       e.preventDefault();
-      const data = $(this).data('id');
+      // const data = $(this).data('id');
 
-      console.log(data);
-
+      let form = $(this).closest('form');
       swal({
          title: "Apakah anda yakin?",
          text: "Data surat keluar akan dihapus",
@@ -121,7 +130,7 @@ $(document).ready(function () {
          // jika tombol yes maka pergi ke location href :
          .then((willdelete) => {
             if (willdelete) {
-               document.location.href = data;
+               form.submit();
             }
          })
 

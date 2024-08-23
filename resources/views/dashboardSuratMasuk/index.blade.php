@@ -39,7 +39,8 @@
         @endif
         <div class="bg-light rounded h-100 p-4">
             <div class="table-responsive">
-                <table class="table table-hover" style="color:black">
+                {{-- <table class="table table-hover" style="color:black" id="surat_masuk"> --}}
+                <table class="table table-hover" id="surat_masuk" style="color:black">
 
                     <div class="d-flex justify-content-between">
                         <div class="d-flex gap-3">
@@ -48,11 +49,6 @@
 
                             <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                     class="bi bi-printer me-2"></i>Cetak</button>
-                        </div>
-
-                        <div>
-                            <a href="{{ url('carisuratmasuk') }} " class="btn btn-info mb-3"><i
-                                    class="bi bi-search me-2"></i></i>Search</a>
                         </div>
 
                     </div>
@@ -116,11 +112,15 @@
                                                 style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <div class="btn btn btn-danger btn-delete-suratmasuk"
-                                                data-id="{{ url('dashboard/suratmasuks/delete/' . $suratMasuk->id) }}"
-                                                style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
-                                                <i class="bi bi-trash"></i>
-                                            </div>
+                                            <form action="{{ url('dashboard/suratmasuk/' . $suratMasuk->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="btn btn btn-danger btn-delete-suratmasuk"
+                                                    style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
+                                                    <i class="bi bi-trash"></i>
+                                                </div>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -155,11 +155,16 @@
                                                 style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px"><i
                                                     class="bi bi-pencil-square"></i></a>
 
-                                            <div class="btn btn btn-danger btn-delete-suratmasuk"
-                                                data-id="{{ url('dashboard/suratmasuks/delete/' . $suratMasuk->id) }}"
-                                                style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
-                                                <i class="bi bi-trash"></i>
-                                            </div>
+                                            <form action="{{ url('dashboard/suratmasuk' . $suratMasuk->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="btn btn btn-danger btn-delete-suratmasuk"
+                                                    style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
+                                                    <i class="bi bi-trash"></i>
+                                                </div>
+                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -169,10 +174,6 @@
                     </tbody>
                 </table>
 
-                {{-- link pagination --}}
-                <div class="d-flex flex-column">
-                    {{ $suratMasuks->links() }}
-                </div>
             </div>
         </div>
     </div>

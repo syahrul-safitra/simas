@@ -6,7 +6,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cetak Surat Masuk</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cetak Surat Keluar</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ url('dashboard/suratkeluars/cetak') }}" method="POST">
@@ -28,7 +28,7 @@
     </div>
 
     <div class="col-12">
-        <h4 class="mb-2"><i class="bi bi-envelope"></i> Surat Masuk</h4>
+        <h4 class="mb-2"><i class="bi bi-envelope"></i> Surat Keluar</h4>
         {{-- Session Message --}}
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -38,7 +38,7 @@
         @endif
         <div class="bg-light rounded h-100 p-4">
             <div class="table-responsive">
-                <table class="table table-hover" style="color:black">
+                <table class="table table-hover" style="color:black" id="surat_keluar">
                     <div class="d-flex gap-3">
                         <a href="{{ url('dashboard/suratkeluar/create') }} " class="btn btn-primary mb-3"><i
                                 class="bi bi-plus-circle me-2"></i></i>Tambah</a>
@@ -88,11 +88,16 @@
                                             style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px"><i
                                                 class="bi bi-pencil-square"></i></a>
 
-                                        <div class="btn btn btn-danger btn-delete-suratkeluar"
-                                            data-id="{{ url('dashboard/suratkeluars/delete/' . $suratKeluar->id) }}"
-                                            style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
-                                            <i class="bi bi-trash"></i>
-                                        </div>
+                                        <form action="{{ url('dashboard/suratkeluar/' . $suratKeluar->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="btn btn btn-danger btn-delete-suratkeluar"
+                                                style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px; padding-right: 5px">
+                                                <i class="bi bi-trash"></i>
+                                            </div>
+                                        </form>
+
                                     </div>
                                 </td>
                             </tr>

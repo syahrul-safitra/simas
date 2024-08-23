@@ -82,7 +82,8 @@ class InstansiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Instansi $instansi)
+
+    public function destroy(Instansi $instansi)
     {
         Instansi::destroy($instansi->id);
         // with() :: adalah session yang digunakan untuk mengirim pesan succes atau error saat data telah di inputkan : 

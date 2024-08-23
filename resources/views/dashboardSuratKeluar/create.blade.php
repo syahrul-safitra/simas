@@ -4,7 +4,7 @@
     <div class="row g-4">
         <div class="col-sm-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Create new incoming mail</h6>
+                <h6 class="mb-4">Tambah Surat Keluar</h6>
                 <form action="{{ url('dashboard/suratkeluar') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <!-- row 1 -->
